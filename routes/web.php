@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoomController;
 use Illuminate\Support\Facades\Route;
@@ -20,11 +21,12 @@ Route::get('/', function () {
 });
 
 Route::get('/room/create', [RoomController::class, 'create'])->middleware(['auth']);
-Route::post('/room/create', [RoomController::class, 'store'])->middleware(['auth'])->name('room.create');
+Route::post('/room/create', [RoomController::class, 'store'])->middleware(['auth'])->name('room.store');
 Route::get('/room/{id}', [RoomController::class, 'show']);
 Route::get('/profile/create', [ProfileController::class, 'create'])->middleware(['auth']);
-Route::post('/profile/create', [ProfileController::class, 'store'])->middleware(['auth'])->name('profile.create');
+Route::post('/profile/create', [ProfileController::class, 'store'])->middleware(['auth'])->name('profile.store');
 Route::get('/profile/{id}', [ProfileController::class, 'show'])->middleware(['auth']);
+Route::get('/bookmark/create/{room_id}', [BookmarkController::class, 'store'])->middleware(['auth'])->name('bookmark.store');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

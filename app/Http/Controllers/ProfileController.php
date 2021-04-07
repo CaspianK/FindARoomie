@@ -73,7 +73,6 @@ class ProfileController extends Controller
     public function show($id)
     {
         $profile = Profile::where('user_id', $id)->firstOrFail();
-        return $profile;
         if ($profile === null) return abort(404);
         return view('profile.show', compact('profile'));
     }

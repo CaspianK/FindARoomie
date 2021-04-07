@@ -8,7 +8,7 @@
 </head>
 <body>
     <x-auth-validation-errors class="mb-4" :errors="$errors" />
-    <form method="POST" action="{{ route('room.create') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('room.store') }}" enctype="multipart/form-data">
         @csrf
         <input type="text" name="title" placeholder="Title" required>
         <select name="city">

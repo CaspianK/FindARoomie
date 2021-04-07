@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>{{ $profile->user->first_name }} {{ $profile->user->last_name }}</h1>
-    <img src="{{ url('profile/'.$profile->user->id.'/picture') }}" alt="{{ $profile->user->first_name.' '.$profile->user->last_name.'`s profile picture'}}" style="width: 300px;">
+    <img src="{{ url('storage/profile/'.$profile->user->id.'/picture') }}" alt="{{ $profile->user->first_name.' '.$profile->user->last_name.'`s profile picture'}}" style="width: 300px;">
     <p>Phone Number: {{ $profile->phone_number }}</p>
     <p>Gender: {{ $profile->gender }}</p>
     <br>

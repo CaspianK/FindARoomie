@@ -3,14 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bookmark;
-use App\Models\City;
-use App\Models\Room;
-use App\Models\User;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class RoomController extends Controller
+class BookmarkController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -29,16 +24,7 @@ class RoomController extends Controller
      */
     public function create()
     {
-        $profile = User::find(auth()->user()->id)->profile;
-        if ($profile === null) {
-            return redirect(RouteServiceProvider::CREATE_PROFILE);
-        }
-        $room = $profile->room;
-        if ($room !== null) {
-            return redirect(RouteServiceProvider::HOME);
-        }
-        $cities = DB::table('cities')->pluck('id', 'name');
-        return view('room.create', compact('cities'));
+        //
     }
 
     /**
@@ -47,22 +33,13 @@ class RoomController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($room_id)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'city' => 'required',
-            'address' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
+        Bookmark::create([
+            'user_id' => auth()->user()->id,
+            'room_id' => $room_id,
         ]);
-
-        Room::create([
-            'profile_id' => User::find(auth()->user()->id)->profile->id,
-            'city_id' => $request->city,
-            'title' => $request->title,
-            'address' => $request->address,
-            'description' => $request->description,
-        ]);
+        return back();
     }
 
     /**
@@ -73,10 +50,7 @@ class RoomController extends Controller
      */
     public function show($id)
     {
-        $room = Room::find($id);
-        if ($room === null) return abort(404);
-        $bookmark = Bookmark::where('user_id', auth()->user()->id)->where('room_id', $id)->exists();
-        return view('room.show', compact('room', 'bookmark'));
+        //
     }
 
     /**

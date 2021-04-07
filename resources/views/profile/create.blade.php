@@ -8,7 +8,7 @@
 </head>
 <body>
     <x-auth-validation-errors class="mb-4" :errors="$errors" />
-    <form method="POST" action="{{ route('profile.create') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('profile.store') }}" enctype="multipart/form-data">
         @csrf
         <label for="profile_picture">Profile Picture</label>
         <input type="file" name="profile_picture">

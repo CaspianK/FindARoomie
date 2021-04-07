@@ -13,5 +13,11 @@
     <p>{{ $room->description }}</p>
     <br>
     <p>Posted on: {{ $room->created_at }}</p>
+
+    @if ( $bookmark == 0 )
+    <a href="{{ url('/bookmark/create/'.$room->id ) }}">Bookmark it</a>
+    @else
+    <p>Already bookmarked!</p>
+    @endif
 </body>
 </html>
