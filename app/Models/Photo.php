@@ -10,6 +10,7 @@ class Photo extends Model
     use HasFactory;
 
     protected $fillable = [
+        'room_id',
         'path',
     ];
 
