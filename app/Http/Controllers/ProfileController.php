@@ -16,7 +16,14 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        //
+        $user = User::find(auth()->user()->id);
+        $profile = $user->profile;
+        if ($profile === null) {
+            return view('profile.create');
+        }
+        $room = $profile->room;
+        $bookmarks = $user->bookmark;
+        return view('profile.index', compact('profile', 'room', 'bookmarks'));
     }
 
     /**
@@ -62,6 +69,7 @@ class ProfileController extends Controller
             'instagram' => $request->instagram,
             'spotify' => $request->spotify,
         ]);
+        return redirect(RouteServiceProvider::HOME);
     }
 
     /**
