@@ -10,6 +10,9 @@
     <x-auth-validation-errors class="mb-4" :errors="$errors" />
     <form method="POST" action="{{ route('room.store') }}" enctype="multipart/form-data">
         @csrf
+        <input type="file" name="photo1" required>
+        <input type="file" name="photo2" required>
+        <input type="file" name="photo3" required>
         <input type="text" name="title" placeholder="Title" required>
         <select name="city">
             @foreach ($cities as $name => $id)
