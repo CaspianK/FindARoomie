@@ -15,7 +15,7 @@ class CreateRoomsTable extends Migration
     {
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('profile_id')->constrained('profiles')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('profile_id')->constrained('profiles')->onUpdate('cascade')->onDelete('cascade')->unique();
             $table->foreignId('city_id')->constrained('cities')->onUpdate('cascade')->onDelete('cascade');
             $table->string('title');
             $table->string('address');
