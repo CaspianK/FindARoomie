@@ -36,7 +36,7 @@ body {
 
 .footer {
   padding: 10px 0;
-  background-color: #000;
+  background-color: #121212;
 }
 
 .nav {
@@ -247,6 +247,46 @@ body {
           flex-direction: column;
 }
 
+.signin textarea {
+  margin: 5px 0 20px;
+  padding: 10px;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  border: 1px solid #afafaf;
+  height: 150px;
+  resize: none;
+}
+
+.signin__birthdate-wrapper input {
+  height: 21px;
+}
+
+.signin__optional {
+  font-weight: 400;
+  color: #3d3d3d;
+}
+
+.signin__ppicture-wrapper {
+  margin-top: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 325px;
+}
+
+.signin__ppicture-wrapper input {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+}
+
+.signin__ppicture-wrapper label {
+  font-size: 1rem;
+}
+
 .signin__last {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -303,6 +343,29 @@ body {
 .signin__btn_member {
   margin-top: 15px;
   margin-right: 5px;
+}
+
+.signin__together {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.signin__gender-wrapper {
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+}
+
+.signin__gender-wrapper select {
+  margin: 5px 0 20px;
+  padding: 10px;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  border: 1px solid #afafaf;
 }
 
 .rooms {

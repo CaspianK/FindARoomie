@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Profile;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -22,8 +23,7 @@ class ProfileController extends Controller
             return view('profile.create');
         }
         $room = $profile->room;
-        $bookmarks = $user->bookmark;
-        return view('profile.index', compact('profile', 'room', 'bookmarks'));
+        return view('profile.index', compact('profile', 'room'));
     }
 
     /**
@@ -49,7 +49,7 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'phone_number' => 'required|string|max:255',
+            'phone_number' => 'required|string|max:17',
             'gender' => 'required|string|max:10',
             'profile_picture' => 'required|mimes:jpg,jpeg,png',
             'bio' => 'required|string|min:50',
