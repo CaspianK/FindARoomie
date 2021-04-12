@@ -1,38 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ URL::asset('css/index.css') }}">
-    <title>FindARoomie - Home</title>
-</head>
+<x-head-meta title="Home"></x-head-meta>
 <body>
-    <header class="header">
-        <div class="container header__container">
-            <div>
-                <a href="{{ route('home') }}" class="logo link text">FindARoomie!</a>
-            </div>
-            <ul class="nav">
-                    <li>
-                        <form action="">
-                            <select name="city"  class="nav__city text" onchange="this.form.submit()">
-                                <option value="Almaty">Almaty</option>
-                                <option value="Astana">Astana</option>
-                                <option value="Shymkent">Shymkent</option>
-                            </select>
-                        </form>
-                    </li>
-                    <li><a href="{{ url('/en') }}" class="nav__lang link text">kazakca</a></li>
-                @auth
-                    <li><a href="#" class="nav__main link text">Bookmarks</a></li>
-                    <li><a href="{{ url('/profile') }}" class="nav__main link text">Profile</a></li>
-                @else
-                    <li><a href="{{ route('login') }}" class="nav__main link text">Sign In</a></li>
-                @endauth
-            </ul>
-        </div>
-    </header>
+    <x-header></x-header>
     <div class="intro">
         <div class="container intro__container">
             <div class="intro__text text">
@@ -42,7 +12,7 @@
                 </div>
                 <div class="intro__buttons">
                     <a href="" class="link text">Find a room</a>
-                    <a href="" class="link text">Post a room</a>
+                    <a href="" class="link text btn">Post a room</a>
                 </div>
             </div>
             <div><img src="{{ url('storage/images/home.png') }}" alt="" class="intro__picture"></div>
@@ -159,16 +129,6 @@
             </div>
         </div>
     </div>
-    <footer class="footer">
-        <div class="container header__container">
-            <div>
-                <a href="{{ route('home') }}" class="logo link link_light text text_light">FindARoomie!</a>
-            </div>
-            <ul class="nav">
-                <li><a href="#" class="nav__main link link_light text text_light">Instagram</a></li>
-                <li><a href="#" class="nav__main link link_light text text_light">Spotify</a></li>
-            </ul>
-        </div>
-    </footer>
+    <x-footer></x-footer>
 </body>
 </html>

@@ -34,6 +34,10 @@ Route::get('/ast', function() {
     ]);
 });
 
+Route::get('/log', function() {
+    return view('auth.login');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
