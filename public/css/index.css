@@ -1,0 +1,250 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap");
+body {
+  margin: 0;
+}
+
+.container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+.header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 99;
+  padding: 10px 0;
+}
+
+.header__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.footer {
+  padding: 10px 0;
+  background-color: #000;
+}
+
+.nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+}
+
+.nav__main, .nav__bookmark {
+  margin-left: 20px;
+}
+
+.nav__lang {
+  margin-right: 30px;
+  font-size: 0.9rem;
+}
+
+.nav__city {
+  font-weight: 700;
+  border: none;
+  margin-right: 40px;
+  outline: none;
+}
+
+.nav__city:focus {
+  outline: none;
+}
+
+.nav__city:hover {
+  cursor: pointer;
+}
+
+.nav li a {
+  font-weight: 700;
+}
+
+.text {
+  font-family: "Lato", sans-serif;
+  color: #303030;
+}
+
+.text_light {
+  color: #fff;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.link:hover {
+  color: #646464;
+}
+
+.link_light:hover {
+  color: #d1d1d1;
+}
+
+.intro__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  padding: 50px 0;
+}
+
+.intro__picture {
+  height: 500px;
+}
+
+.intro__text {
+  width: 35%;
+  margin-right: 200px;
+}
+
+.intro__text h1 {
+  margin: 0;
+  font-size: 3rem;
+}
+
+.intro__text p {
+  margin-top: 15px;
+  color: #3d3d3d;
+  line-height: 170%;
+}
+
+.intro__welcome {
+  margin-top: 45px;
+}
+
+.intro__buttons {
+  margin-top: 60px;
+}
+
+.intro__buttons a {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.intro__buttons a:first-child {
+  margin-right: 20px;
+}
+
+.intro__buttons a:last-child {
+  color: #fff;
+  background-color: #0000ff;
+  padding: 10px 30px;
+  border-radius: 30px;
+  -webkit-box-shadow: 0px 0px 20px -10px rgba(0, 0, 0, 0.75);
+          box-shadow: 0px 0px 20px -10px rgba(0, 0, 0, 0.75);
+}
+
+.main {
+  padding: 50px 0;
+}
+
+.main h2 {
+  margin: 0;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.7rem;
+}
+
+.rooms {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-top: 50px;
+}
+
+.room {
+  width: 277.5px;
+  border: 1px solid #d3d3d3;
+  margin-bottom: 30px;
+}
+
+.room__text {
+  padding: 15px;
+}
+
+.room__text h3,
+.room__text p {
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.room__text h3 {
+  font-size: 1.3rem;
+}
+
+.room__last {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 10px;
+}
+
+.room__address.text {
+  margin-top: 5px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #6d6d6d;
+}
+
+.room__image {
+  height: 277.5px;
+  background-size: contain;
+  background-position: center;
+}
+
+.room__bookmark {
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: inline-block;
+  background-position: center;
+  background-image: url("/storage/images/heart.svg");
+  border: none;
+  background-color: transparent;
+}
+
+.room__bookmark:hover {
+  background-image: url("/storage/images/heart_hover.svg");
+  cursor: pointer;
+}
+
+.room__bookmark:active {
+  background-image: url("/storage/images/heart_clicked.svg");
+  cursor: pointer;
+}
+
+.room__bookmark:focus {
+  outline: none;
+}
+/*# sourceMappingURL=index.css.map */
