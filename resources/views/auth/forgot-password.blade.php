@@ -1,36 +1,31 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
-
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ URL::asset('css/index.css') }}">
+    <title>FindARoomie - Home</title>
+</head>
+<body>
+    <x-header></x-header>
+    <div class="main_signin">
+        <div class="container main_signin__container">
+            <div class="main_signin__wrapper" id="forgot">
+                <form action="{{ route('password.email') }}" class="signin" method="POST">
+                    @csrf
+                    <x-auth-session-status :status="session('status')" />
+                    <x-auth-validation-errors class="mb-4" :errors="$errors" />
+                    <label for="email" class="text">Email</label>
+                    <input type="email" name="email" class="text" required autofocus>
+                    <div class="signin__last">
+                        <a href="{{ route('signin') }}" class="link text signin__btn" id="goback">Go Back</a>
+                        <button type="submit" class="text btn">Reset Password</button>
+                    </div>
+                </form>
+            </div>
         </div>
-
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('password.email') }}">
-            @csrf
-
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <x-button>
-                    {{ __('Email Password Reset Link') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+    </div>
+    <x-footer></x-footer>
+</body>
+</html>

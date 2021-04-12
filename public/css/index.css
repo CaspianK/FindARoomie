@@ -145,13 +145,21 @@ body {
   margin-right: 20px;
 }
 
-.intro__buttons a:last-child {
+.btn {
   color: #fff;
   background-color: #0000ff;
   padding: 10px 30px;
   border-radius: 30px;
   -webkit-box-shadow: 0px 0px 20px -10px rgba(0, 0, 0, 0.75);
           box-shadow: 0px 0px 20px -10px rgba(0, 0, 0, 0.75);
+}
+
+.btn.link:hover {
+  color: #fff;
+}
+
+.btn:hover {
+  cursor: pointer;
 }
 
 .main {
@@ -163,6 +171,138 @@ body {
   text-align: center;
   font-weight: 700;
   font-size: 1.7rem;
+}
+
+.main_signin {
+  min-height: calc(100vh - 144px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.main_signin__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.main_signin__container form {
+  -webkit-box-shadow: 0px 0px 30px -15px rgba(0, 0, 0, 0.75);
+          box-shadow: 0px 0px 30px -15px rgba(0, 0, 0, 0.75);
+  border-radius: 20px;
+  padding: 50px;
+  width: 450px;
+}
+
+.main_signin__container form label {
+  font-weight: 700;
+}
+
+.main_signin__container form input {
+  margin: 5px 0 20px;
+  padding: 10px;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  border: 1px solid #afafaf;
+}
+
+.main_signin__container form button {
+  font-size: 1rem;
+}
+
+.main_signin__wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.hide {
+  display: none;
+}
+
+.signin {
+  background-color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.signin__last {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.signin__checkbox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.signin__checkbox .signin__remember {
+  margin: 0;
+}
+
+.signin__checkbox label {
+  margin-left: 10px;
+  padding-bottom: 2px;
+}
+
+.signin__btn {
+  background-color: transparent;
+  border: none;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 0;
+  font-weight: 700;
+  margin-top: 5px;
+  margin-right: 20px;
+  font-size: 1rem;
+  margin-top: 0;
+}
+
+.signin__btn:hover {
+  cursor: pointer;
+  outline: none;
+}
+
+.signin__btn:focus {
+  outline: none;
+}
+
+.signin__btn_member {
+  margin-top: 15px;
+  margin-right: 5px;
 }
 
 .rooms {
