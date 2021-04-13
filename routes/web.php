@@ -19,9 +19,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [RoomController::class, 'index'])->name('home');
 
-Route::get('/room/create', [RoomController::class, 'create'])->middleware(['auth']);
+Route::get('/room/create', [RoomController::class, 'create'])->middleware(['auth'])->name('room.create');
 Route::post('/room/create', [RoomController::class, 'store'])->middleware(['auth'])->name('room.store');
-Route::get('/room/{id}', [RoomController::class, 'show']);
+Route::get('/room/{id}', [RoomController::class, 'show'])->name('room.show');
 Route::get('/profile/create', [ProfileController::class, 'create'])->middleware(['auth']);
 Route::post('/profile/create', [ProfileController::class, 'store'])->middleware(['auth'])->name('profile.store');
 Route::get('/profile/{id}', [ProfileController::class, 'show'])->middleware(['auth'])->name('profile');

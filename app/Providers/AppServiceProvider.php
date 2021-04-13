@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer(['components/header'], function($view){
+        View::composer(['components/header', 'room/index'], function($view){
             $cities = DB::table('cities')->orderBy('id')->pluck('id', 'name');
             $view->with('cities', $cities);
         });

@@ -23,9 +23,8 @@ class RoomController extends Controller
     {
         // $cities = City::all()->pluck('id');
         // $rooms = Room::whereIn('city_id', $cities)->get();
-        $rooms = Room::orderBy('id', 'desc')->get();
-        $cities = City::orderBy('id', 'asc')->whereIn('id', $rooms->pluck('city_id'))->pluck('id', 'name');
-        return view('room.index', compact('rooms', 'cities'));
+        $rooms = Room::orderBy('created_at', 'desc')->paginate(12);
+        return view('room.index', compact('rooms'));
     }
 
     /**
@@ -100,7 +99,8 @@ class RoomController extends Controller
         if (Auth::check()) {
             $bookmark = Bookmark::where('user_id', auth()->user()->id)->where('room_id', $id)->exists();
         }
-        return view('room.show', compact('room', 'bookmark'));
+        $photos = Photo::where('room_id', $room->id)->get();
+        return view('room.show', compact('room', 'bookmark', 'photos'));
     }
 
     /**
