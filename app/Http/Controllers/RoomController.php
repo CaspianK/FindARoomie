@@ -43,7 +43,7 @@ class RoomController extends Controller
         if ($room !== null) {
             return redirect(RouteServiceProvider::HOME);
         }
-        $cities = DB::table('cities')->pluck('id', 'name');
+        $cities = DB::table('cities')->orderBy('id')->pluck('id', 'name');
         return view('room.create', compact('cities'));
     }
 
@@ -56,9 +56,8 @@ class RoomController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'photo1' => 'required|mimes:jpg,jpeg,png',
-            'photo2' => 'required|mimes:jpg,jpeg,png',
-            'photo3' => 'required|mimes:jpg,jpeg,png',
+            'room_pictures' => 'required',
+            'room_pictures.*' => 'mimes:jpg,jpeg,png',
             'title' => 'required|string|max:255',
             'city' => 'required',
             'address' => 'required|string|max:255',
@@ -75,24 +74,14 @@ class RoomController extends Controller
         ]);
 
         $room_id = Room::where('profile_id', $profile_id)->pluck('id')[0];
-        $photo1 = 'room/'.$room_id.'/photo/1';
-        $photo2 = 'room/'.$room_id.'/photo/2';
-        $photo3 = 'room/'.$room_id.'/photo/3';
-        $request->file('photo1')->storeAs('public', $photo1);
-        $request->file('photo2')->storeAs('public', $photo2);
-        $request->file('photo3')->storeAs('public', $photo3);
-        Photo::create([
+        foreach($request->file('room_pictures') as $key => $room_picture) {
+            $name = 'room/'.$room_id.'/photo/'.($key+1);
+            $room_picture->storeAs('public', $name);
+            Photo::create([
             'room_id' => $room_id,
-            'path' => $photo1,
+            'path' => $name,
         ]);
-        Photo::create([
-            'room_id' => $room_id,
-            'path' => $photo2,
-        ]);
-        Photo::create([
-            'room_id' => $room_id,
-            'path' => $photo3,
-        ]);
+        }
 
         return redirect(RouteServiceProvider::HOME);
     }
