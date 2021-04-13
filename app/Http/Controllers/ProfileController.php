@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Photo;
 use App\Models\Profile;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class ProfileController extends Controller
 {
@@ -22,8 +24,8 @@ class ProfileController extends Controller
         if ($profile === null) {
             return view('profile.create');
         }
-        $room = $profile->room;
-        return view('profile.index', compact('profile', 'room'));
+        $id = $user->id;
+        return Redirect::route('profile', array($id));
     }
 
     /**
@@ -82,7 +84,8 @@ class ProfileController extends Controller
     {
         $profile = Profile::where('user_id', $id)->firstOrFail();
         if ($profile === null) return abort(404);
-        return view('profile.show', compact('profile'));
+        $room = $profile->room;
+        return view('profile.index', compact('profile', 'room'));
     }
 
     /**
