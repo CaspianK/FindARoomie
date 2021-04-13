@@ -45,7 +45,7 @@
                     <h2 class="text">Looking for a mate?</h2>
                     <div class="intro__buttons">
                         <a href="" class="link text">Find a room</a>
-                        <a href="" class="link text btn">Post a room</a>
+                        <a href="{{ route('room.create') }}" class="link text btn">Post a room</a>
                     </div>
                 @else
                     <h2 class="text profile__doesnt">This person doesn't have a room</h2>
@@ -58,7 +58,7 @@
     <script>
         let readmore = document.getElementById('readmore');
         let bio = document.getElementById('bio');
-        if (bio.innerText.length < 45) readmore.classList.add('hide');
+        if (bio.innerText.length < 60) readmore.classList.add('hide');
         readmore.addEventListener('click', function() {
             if(readmore.value == "HIDDEN") {
                 readmore.value = "SHOWN";
