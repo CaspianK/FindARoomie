@@ -7,9 +7,9 @@
                 <li>
                     <form action="">
                         <select name="city"  class="nav__city text" onchange="this.form.submit()">
-                            <option value="Almaty">Almaty</option>
-                            <option value="Astana">Astana</option>
-                            <option value="Shymkent">Shymkent</option>
+                            @foreach ($cities as $name => $id)
+                                <option value="{{ $id }}">{{ $name }}</option>
+                            @endforeach
                         </select>
                     </form>
                 </li>
