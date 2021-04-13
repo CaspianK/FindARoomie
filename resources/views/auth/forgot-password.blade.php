@@ -3,7 +3,7 @@
 <x-head-meta title="Forgot Password"></x-head-meta>
 <body>
     <x-header></x-header>
-    <div class="main_signin">
+    <div class="main main_signin">
         <div class="container main_signin__container">
             <div class="main_signin__wrapper" id="forgot">
                 <form action="{{ route('password.email') }}" class="signin" method="POST">

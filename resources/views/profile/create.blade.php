@@ -6,7 +6,7 @@
 </x-head-meta>
 <body>
     <x-header></x-header>
-    <div class="main_signin">
+    <div class="main main_signin">
         <div class="container main_signin__container">
             <div class="main_signin__wrapper">
                 <form action="{{ route('profile.store') }}" class="signin" method="POST" enctype="multipart/form-data">

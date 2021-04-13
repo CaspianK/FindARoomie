@@ -75,9 +75,9 @@ class RoomController extends Controller
         ]);
 
         $room_id = Room::where('profile_id', $profile_id)->pluck('id')[0];
-        $photo1 = 'room/'.$profile_id.'/photo/1';
-        $photo2 = 'room/'.$profile_id.'/photo/2';
-        $photo3 = 'room/'.$profile_id.'/photo/3';
+        $photo1 = 'room/'.$room_id.'/photo/1';
+        $photo2 = 'room/'.$room_id.'/photo/2';
+        $photo3 = 'room/'.$room_id.'/photo/3';
         $request->file('photo1')->storeAs('public', $photo1);
         $request->file('photo2')->storeAs('public', $photo2);
         $request->file('photo3')->storeAs('public', $photo3);

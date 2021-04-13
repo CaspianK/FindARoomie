@@ -24,7 +24,7 @@ Route::post('/room/create', [RoomController::class, 'store'])->middleware(['auth
 Route::get('/room/{id}', [RoomController::class, 'show']);
 Route::get('/profile/create', [ProfileController::class, 'create'])->middleware(['auth']);
 Route::post('/profile/create', [ProfileController::class, 'store'])->middleware(['auth'])->name('profile.store');
-Route::get('/profile/{id}', [ProfileController::class, 'show'])->middleware(['auth']);
+Route::get('/profile/{id}', [ProfileController::class, 'show'])->middleware(['auth'])->name('profile');
 Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
 Route::get('/bookmark/create/{room_id}', [BookmarkController::class, 'store'])->middleware(['auth'])->name('bookmark.store');
 

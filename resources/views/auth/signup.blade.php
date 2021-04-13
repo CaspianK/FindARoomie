@@ -3,7 +3,7 @@
 <x-head-meta title="Sign Up"></x-head-meta>
 <body>
     <x-header></x-header>
-    <div class="main_signin">
+    <div class="main main_signin">
         <div class="container main_signin__container">
             <div class="main_signin__wrapper" id="signup">
                 <form action="{{ route('signup') }}" class="signin" method="POST">
