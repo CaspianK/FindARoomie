@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<x-head-meta title="Bookmakrs"></x-head-meta>
+<x-head-meta title="__('Bookmakrs')"></x-head-meta>
 <body>
     <x-header></x-header>
     <div class="main main_bookmarks">
         <div class="container main__container">
-            <h2 class="text">Your Bookmarks:</h2>
+            <h2 class="text">{{__("Your Bookmarks:")}}</h2>
             <div class="rooms" id="rooms">
                 @include('room.display')
             </div>
