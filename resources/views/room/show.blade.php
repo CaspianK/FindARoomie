@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<x-head-meta :title="$room->profile->user->first_name.' '.$room->profile->user->last_name.'`s room'">
+<x-head-meta :title="$room->profile->user->first_name.' '.$room->profile->user->last_name.__('`s room')">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
@@ -14,12 +14,16 @@
                     <h1 class="text">{{ $room->title }}</h1>
                     @auth
                         @if (auth()->user()->id == $room->profile->user->id)
-                            <a href="#" class="link text btn btn_change">Change Room</a>
+                            <a href="{{ route('room.edit', ['id' => $room->id ])}}" class="link text btn btn_change">{{__("Update Room")}}</a>
                         @else
-                            <a href="#" class="link text btn btn_change">Bookmark</a>
+                            @if ( $bookmark == 0 )
+                                <a href="{{ route('bookmark.store', ['room_id' => $room->id]) }}" class="link text btn btn_change">{{__("Bookmark")}}</a>
+                            @else
+                                <a href="{{ route('bookmark.destroy', ['room_id' => $room->id]) }}" class="link text btn btn_change">{{__("Unbookmark")}}</a>
+                            @endif
                         @endif
                     @else
-                        <a href="#" class="link text btn btn_change">Bookmark</a>
+                        <a href="{{ route('bookmark.store', ['room_id' => $room->id]) }}" class="link text btn btn_change">{{__("Bookmark")}}</a>
                     @endauth
                 </div>
                 <div class="room_show__sp">
@@ -41,12 +45,6 @@
             </div>
         </div>
     </div>
-
-    @if ( $bookmark == 0 )
-    <a href="{{ url('/bookmark/create/'.$room->id ) }}">Bookmark it</a>
-    @else
-    <p>Already bookmarked!</p>
-    @endif
     <x-footer></x-footer>
 </body>
 </html>

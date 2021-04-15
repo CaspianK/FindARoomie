@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<x-head-meta title="Forgot Password"></x-head-meta>
+<x-head-meta :title="__('Forgot Password')"></x-head-meta>
 <body>
     <x-header></x-header>
     <div class="main main_signin">
@@ -10,11 +10,11 @@
                     @csrf
                     <x-auth-session-status :status="session('status')" />
                     <x-auth-validation-errors class="mb-4" :errors="$errors" />
-                    <label for="email" class="text">Email</label>
+                    <label for="email" class="text">{{__("Email")}}</label>
                     <input type="email" id="email" name="email" class="text" required autofocus>
                     <div class="signin__last">
-                        <a href="{{ route('signin') }}" class="link text signin__btn" id="goback">Go Back</a>
-                        <button type="submit" class="text btn">Reset Password</button>
+                        <a href="{{ route('signin') }}" class="link text signin__btn" id="goback">{{__("Go Back")}}</a>
+                        <button type="submit" class="text btn">{{__("Reset Password")}}</button>
                     </div>
                 </form>
             </div>

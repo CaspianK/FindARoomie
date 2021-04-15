@@ -172,6 +172,11 @@ body {
   min-height: calc(100vh - 144px);
 }
 
+.main_bookmarks {
+  padding: 50px 0;
+  min-height: calc(100vh - 244px);
+}
+
 .main h2 {
   margin: 0;
   text-align: center;
@@ -180,11 +185,13 @@ body {
 }
 
 .main_home {
-  padding: 50px 0;
+  padding: 50px 0 39px;
   min-height: auto;
 }
 
 .main_signin {
+  padding: 50px 0;
+  min-height: calc(100vh - 244px);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -383,18 +390,23 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   margin-top: 50px;
 }
 
+.rooms .room {
+  margin-right: 27px;
+}
+
+.rooms .room:nth-child(4n) {
+  margin-right: 0;
+}
+
 .room {
   width: 277.5px;
   border: 1px solid #d3d3d3;
-  margin-bottom: 30px;
+  margin-bottom: 27px;
 }
 
 .room__text {
@@ -432,7 +444,7 @@ body {
 
 .room__image {
   height: 277.5px;
-  background-size: contain;
+  background-size: cover;
   background-position: center;
 }
 
@@ -453,7 +465,7 @@ body {
   cursor: pointer;
 }
 
-.room__bookmark:active {
+.room__bookmark:active, .room__bookmark_checked {
   background-image: url("/storage/images/heart_clicked.svg");
   cursor: pointer;
 }
@@ -489,7 +501,9 @@ body {
 
 .room_show__description {
   margin: 0;
-  line-height: 1.4rem;
+  line-height: 1.5rem;
+  width: 960px;
+  font-size: 1.1rem;
 }
 
 .room_show__room h1 {
@@ -549,7 +563,7 @@ body {
   width: 200px;
   height: 200px;
   background-position: center;
-  background-size: contain;
+  background-size: cover;
   border-radius: 50%;
 }
 
@@ -655,5 +669,16 @@ body {
 
 .profile__doesnt {
   padding-top: 30px;
+}
+
+.loader {
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.loader img {
+  width: 30px;
+  height: 30px;
 }
 /*# sourceMappingURL=index.css.map */

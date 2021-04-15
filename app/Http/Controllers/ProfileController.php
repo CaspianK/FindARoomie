@@ -71,7 +71,7 @@ class ProfileController extends Controller
             'instagram' => $request->instagram,
             'spotify' => $request->spotify,
         ]);
-        return redirect(RouteServiceProvider::HOME);
+        return $this->index();
     }
 
     /**
@@ -96,7 +96,8 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        //
+        $profile = Profile::where('user_id', $id)->firstOrFail();
+        return view('profile.update', compact('profile'));
     }
 
     /**
@@ -108,7 +109,31 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'phone_number' => 'required|string|max:17',
+            'gender' => 'required|string|max:10',
+            'profile_picture' => 'nullable|mimes:jpg,jpeg,png',
+            'bio' => 'required|string|min:50',
+            'instagram' => 'nullable|string',
+            'spotify' => 'nullable|string',
+        ]);
+
+        if ($request->profile_picture != null) {
+            $filename = 'profile/'.auth()->user()->id.'/picture';
+            $request->file('profile_picture')->storeAs('public', $filename);
+            $profile = Profile::find($id);
+            $profile->profile_picture = $filename;
+            $profile->save();
+        }
+        Profile::where('id', $id)->update([
+            'phone_number' => $request->phone_number,
+            'gender' => $request->gender,
+            'birthdate' => $request->birthdate,
+            'bio' => $request->bio,
+            'instagram' => $request->instagram,
+            'spotify' => $request->spotify,
+        ]);
+        return $this->index();
     }
 
     /**

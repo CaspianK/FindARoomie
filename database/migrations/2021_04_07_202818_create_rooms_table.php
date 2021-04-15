@@ -19,7 +19,7 @@ class CreateRoomsTable extends Migration
             $table->foreignId('city_id')->constrained('cities')->onUpdate('cascade')->onDelete('cascade');
             $table->string('title');
             $table->string('address');
-            $table->string('description');
+            $table->text('description');
             $table->timestamps();
         });
     }

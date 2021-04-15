@@ -11,6 +11,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class RoomController extends Controller
 {
@@ -19,11 +20,15 @@ class RoomController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // $cities = City::all()->pluck('id');
-        // $rooms = Room::whereIn('city_id', $cities)->get();
-        $rooms = Room::orderBy('created_at', 'desc')->paginate(12);
+        if (session('city') == null) session()->put('city', 'Astana');
+        $city = City::where('name', session('city'))->pluck('id')[0];
+        $rooms = Room::orderBy('created_at', 'desc')->where('city_id', $city)->paginate(12);
+        if($request->ajax()){
+            $view = view('room.display', compact('rooms'))->render();
+            return response()->json(['html'=>$view]);
+        }
         return view('room.index', compact('rooms'));
     }
 
@@ -40,7 +45,7 @@ class RoomController extends Controller
         }
         $room = $profile->room;
         if ($room !== null) {
-            return redirect(RouteServiceProvider::HOME);
+            return $this->show($room->id);
         }
         $cities = DB::table('cities')->orderBy('id')->pluck('id', 'name');
         return view('room.create', compact('cities'));
@@ -60,7 +65,7 @@ class RoomController extends Controller
             'title' => 'required|string|max:255',
             'city' => 'required',
             'address' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
+            'description' => 'required|string|max:500',
         ]);        
 
         $profile_id = User::find(auth()->user()->id)->profile->id;
@@ -82,7 +87,7 @@ class RoomController extends Controller
         ]);
         }
 
-        return redirect(RouteServiceProvider::HOME);
+        return $this->show($room_id);
     }
 
     /**
@@ -111,7 +116,9 @@ class RoomController extends Controller
      */
     public function edit($id)
     {
-        //
+        $room = Room::find($id);
+        $cities = DB::table('cities')->orderBy('id')->pluck('id', 'name');
+        return view('room.update', compact('room', 'cities'));
     }
 
     /**
@@ -123,7 +130,38 @@ class RoomController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'room_pictures' => 'nullable',
+            'room_pictures.*' => 'mimes:jpg,jpeg,png',
+            'title' => 'required|string|max:255',
+            'city' => 'required',
+            'address' => 'required|string|max:255',
+            'description' => 'required|string|max:500',
+        ]);        
+
+        Room::where('id', $id)->update([
+            'city_id' => $request->city,
+            'title' => $request->title,
+            'address' => $request->address,
+            'description' => $request->description,
+        ]);
+
+        if ($request->room_pictures != null) {
+            $photos = Photo::where('room_id', $id);
+            $photos->delete();
+            Storage::delete('room/'.$id.'/photo');
+            foreach($request->file('room_pictures') as $key => $room_picture) {
+                $name = 'room/'.$id.'/photo/'.($key+1);
+                $room_picture->storeAs('public', $name);
+                Photo::create([
+                'room_id' => $id,
+                'path' => $name,
+            ]);
+            }
+        }
+        
+        return $this->show($id);
+        
     }
 
     /**

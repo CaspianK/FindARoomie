@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bookmark;
+use App\Models\Room;
 use Illuminate\Http\Request;
 
 class BookmarkController extends Controller
@@ -14,7 +15,9 @@ class BookmarkController extends Controller
      */
     public function index()
     {
-        //
+        $bookmarks = Bookmark::where('user_id', auth()->user()->id)->pluck('room_id');
+        $rooms = Room::whereIn('id', $bookmarks)->orderByDesc('id')->get();
+        return view('bookmark.index', compact('rooms'));
     }
 
     /**
@@ -82,8 +85,10 @@ class BookmarkController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($room_id)
     {
-        //
+        $bookmark = Bookmark::where('room_id', $room_id)->where('user_id', auth()->user()->id);
+        $bookmark->delete();
+        return back();
     }
 }
