@@ -49,7 +49,7 @@ class RegisteredUserController extends Controller
         ]));
 
         event(new Registered($user));
-        Mail::to($request->email)->send(new SignupMail($data = ['name' => $request->first_name]));
+#        Mail::to($request->email)->send(new SignupMail($data = ['name' => $request->first_name]));
 
         return redirect(RouteServiceProvider::HOME);
     }

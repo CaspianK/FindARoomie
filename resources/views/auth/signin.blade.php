@@ -19,7 +19,7 @@
                         <label for="remember" class="text">{{__("Remember me")}}</label>
                     </div>
                     <div class="signin__last">
-                        <a class="text signin__btn link" id="forgot_btn" href="{{ route('password.request') }}">{{__("Forgot password?")}}</a>
+                     <!--   <a class="text signin__btn link" id="forgot_btn" href="{{ route('password.request') }}">{{__("Forgot password?")}}</a> --!>
                         <button type="submit" class="text btn">{{__("Log In")}}</button>
                     </div>
                 </form>

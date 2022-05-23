@@ -98,6 +98,10 @@ body {
   color: #d1d1d1;
 }
 
+.intro {
+	min-height: calc(100vh - 333px);
+}
+
 .intro__container {
   display: -webkit-box;
   display: -ms-flexbox;
