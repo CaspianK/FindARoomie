@@ -4,6 +4,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.1.62/jquery.inputmask.bundle.js"></script>
 </x-head-meta>
+
 <body>
     <x-header></x-header>
     <div class="main main_signin">
@@ -25,7 +26,7 @@
                         <div class="signin__gender-wrapper">
                             <label for="gender" class="text">{{__("Gender")}}</label>
                             <select name="gender" id="gender" required>
-                                <option value="" selected disabled hidden>{{ $profile->gender }}</option>
+                                <option value="{{ $profile->gender }}" selected hidden>{{ $profile->gender }}</option>
                                 <option value="Male">{{__("Male")}}</option>
                                 <option value="Female">{{__("Female")}}</option>
                                 <option value="Other">{{__("Other")}}</option>
@@ -64,11 +65,19 @@
     <x-footer></x-footer>
     <script>
         $(window).load(function() {
-            var phone = [{ "mask": "+# (###) ###-####"}];
-            $('#phone_number').inputmask({ 
-                mask: phone, 
-                greedy: false, 
-                definitions: { '#': { validator: "[0-9]", cardinality: 1}} });
+            var phone = [{
+                "mask": "+# (###) ###-####"
+            }];
+            $('#phone_number').inputmask({
+                mask: phone,
+                greedy: false,
+                definitions: {
+                    '#': {
+                        validator: "[0-9]",
+                        cardinality: 1
+                    }
+                }
+            });
         });
         const file = document.querySelector('#profile_picture');
         const not_chosen = document.getElementById('not_chosen');
@@ -79,4 +88,5 @@
         });
     </script>
 </body>
+
 </html>

@@ -25,9 +25,9 @@ class RoomController extends Controller
         if (session('city') == null) session()->put('city', 'Astana');
         $city = City::where('name', session('city'))->pluck('id')[0];
         $rooms = Room::orderBy('created_at', 'desc')->where('city_id', $city)->paginate(12);
-        if($request->ajax()){
+        if ($request->ajax()) {
             $view = view('room.display', compact('rooms'))->render();
-            return response()->json(['html'=>$view]);
+            return response()->json(['html' => $view]);
         }
         return view('room.index', compact('rooms'));
     }
@@ -66,7 +66,7 @@ class RoomController extends Controller
             'city' => 'required',
             'address' => 'required|string|max:255',
             'description' => 'required|string|max:500',
-        ]);        
+        ]);
 
         $profile_id = User::find(auth()->user()->id)->profile->id;
         Room::create([
@@ -78,13 +78,13 @@ class RoomController extends Controller
         ]);
 
         $room_id = Room::where('profile_id', $profile_id)->pluck('id')[0];
-        foreach($request->file('room_pictures') as $key => $room_picture) {
-            $name = 'room/'.$room_id.'/photo/'.($key+1);
-            $room_picture->storeAs('public', $name);
+        foreach ($request->file('room_pictures') as $key => $room_picture) {
+            $name = 'room/' . $room_id . '/photo/' . ($key + 1);
+            Storage::disk('s3')->put($name, file_get_contents($room_picture));
             Photo::create([
-            'room_id' => $room_id,
-            'path' => $name,
-        ]);
+                'room_id' => $room_id,
+                'path' => $name,
+            ]);
         }
 
         return $this->show($room_id);
@@ -137,7 +137,7 @@ class RoomController extends Controller
             'city' => 'required',
             'address' => 'required|string|max:255',
             'description' => 'required|string|max:500',
-        ]);        
+        ]);
 
         Room::where('id', $id)->update([
             'city_id' => $request->city,
@@ -149,19 +149,18 @@ class RoomController extends Controller
         if ($request->room_pictures != null) {
             $photos = Photo::where('room_id', $id);
             $photos->delete();
-            Storage::delete('room/'.$id.'/photo');
-            foreach($request->file('room_pictures') as $key => $room_picture) {
-                $name = 'room/'.$id.'/photo/'.($key+1);
-                $room_picture->storeAs('public', $name);
+            Storage::disk('s3')->delete('room/' . $id . '/photo');
+            foreach ($request->file('room_pictures') as $key => $room_picture) {
+                $name = 'room/' . $id . '/photo/' . ($key + 1);
+                Storage::disk('s3')->put($name, file_get_contents($room_picture));
                 Photo::create([
-                'room_id' => $id,
-                'path' => $name,
-            ]);
+                    'room_id' => $id,
+                    'path' => $name,
+                ]);
             }
         }
-        
+
         return $this->show($id);
-        
     }
 
     /**

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <x-head-meta :title="__('Update Room')"></x-head-meta>
+
 <body>
     <x-header></x-header>
     <div class="main main_signin">
@@ -22,9 +23,9 @@
                         <div class="signin__gender-wrapper">
                             <label for="city" class="text">{{__("City")}}</label>
                             <select name="city" id="city" required>
-                                <option value="" selected disabled hidden>{{ $room->city->name }}</option>
+                                <option value="{{ $room->city->id }}" selected hidden>{{ $room->city->name }}</option>
                                 @foreach ($cities as $name => $id)
-                                    <option value="{{ $id }}">{{ $name }}</option>
+                                <option value="{{ $id }}">{{ $name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -53,4 +54,5 @@
         });
     </script>
 </body>
+
 </html>

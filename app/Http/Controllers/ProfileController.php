@@ -9,6 +9,7 @@ use App\Providers\RouteServiceProvider;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -59,8 +60,9 @@ class ProfileController extends Controller
             'spotify' => 'nullable|string',
         ]);
 
-        $filename = 'profile/'.auth()->user()->id.'/picture';
-        $request->file('profile_picture')->storeAs('public', $filename);
+        $filename = 'profile/' . auth()->user()->id . '/picture';
+        $image = $request->file('profile_picture');
+        Storage::disk('s3')->put($filename, file_get_contents($image));
         Profile::create([
             'user_id' => auth()->user()->id,
             'phone_number' => $request->phone_number,
@@ -119,8 +121,9 @@ class ProfileController extends Controller
         ]);
 
         if ($request->profile_picture != null) {
-            $filename = 'profile/'.auth()->user()->id.'/picture';
-            $request->file('profile_picture')->storeAs('public', $filename);
+            $filename = 'profile/' . auth()->user()->id . '/picture';
+            $image = $request->file('profile_picture');
+            Storage::disk('s3')->put($filename, file_get_contents($image));
             $profile = Profile::find($id);
             $profile->profile_picture = $filename;
             $profile->save();
